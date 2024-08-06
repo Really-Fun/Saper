@@ -3,12 +3,15 @@
 import random
 import flet as ft
 
+WIDTH = 500
+HEIGHT = 350
+
 
 def main(page: ft.Page) -> None:
     # settings for game
     page.title = "Saper"
-    page.window_height = 350
-    page.window_width = 500
+    page.window_height = HEIGHT
+    page.window_width = WIDTH
     page.window_center()
     page.update()
 
