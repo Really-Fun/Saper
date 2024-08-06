@@ -1,0 +1,4 @@
+*.vvenv
+*build
+*dist
+test.ico
