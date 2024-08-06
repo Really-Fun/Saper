@@ -32,7 +32,7 @@
 
 1. Установите Python версии 3.11.8.
 2. Установите библиотеку flet с помощью команды: `pip install flet` или используйте файл requirements.txt.
-3. Склонируйте репозиторий: `git clone https://github.com/yourusername/saper.git`.
+3. Склонируйте репозиторий: `git clone https://github.com/Really-Fun/Saper.git`.
 4. Перейдите в папку проекта: `cd saper`.
 5. Запустите игру: `python saper.py`.
 
