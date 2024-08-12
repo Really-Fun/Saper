@@ -3,22 +3,21 @@
 import random
 import flet as ft
 
+# Константы для размера окна
 WIDTH = 500
 HEIGHT = 350
 
 
 def main(page: ft.Page) -> None:
-    # settings for game
-    page.title = "Saper"
+    # Настройки игры
+    page.title = "Сапёр 🔥"
     page.window_height = HEIGHT
     page.window_width = WIDTH
     page.window_center()
-    page.update()
 
-    # functions for game
-    def boot_game(event: ft.ControlEvent):
+    # Функции для игры
+    def reboot_game(event: ft.ControlEvent):
         page.clean()
-        game._Game__generate_field()
         game.reboot_user_field()
         game.start()
         for i in game.user_field:
@@ -29,15 +28,15 @@ def main(page: ft.Page) -> None:
         x, y = event.control.url
         if game.field[x][y] == 1:
             page.clean()
-            page.add(ft.Text("LOSER", size=20))
-            page.add(ft.ElevatedButton("Перезапустить игру", on_click=boot_game))
+            page.add(ft.Text("Проиграл", size=20, color="blue"))
+            page.add(ft.ElevatedButton("Перезапустить игру", on_click=reboot_game))
         else:
             event.control.text = str(game.find_bombs(x, y))
             event.control.bgcolor = "green"
             if game.end() == 8:
                 page.clean()
-                page.add(ft.Text("WINNER", size=20))
-                page.add(ft.ElevatedButton("Перезапустить игру", on_click=boot_game))
+                page.add(ft.Text("Победил!", size=20, color="yellow"))
+                page.add(ft.ElevatedButton("Перезапустить игру", on_click=reboot_game))
         page.update()
 
     def on_long(event: ft.ControlEvent):
@@ -50,8 +49,8 @@ def main(page: ft.Page) -> None:
             event.control.bgcolor = "red"
         if game.end() == 8:
             page.clean()
-            page.add(ft.Text("WINNER", size=20))
-            page.add(ft.ElevatedButton("Запустить игру", on_click=boot_game))
+            page.add(ft.Text("Победил!", size=20, color="yellow"))
+            page.add(ft.ElevatedButton("Перезапустить игру", on_click=reboot_game))
         page.update()
 
     class Game:
@@ -104,6 +103,7 @@ def main(page: ft.Page) -> None:
             return str(count)
 
         def reboot_user_field(self):
+            self.__generate_field()
             self.user_field = self.user_field = [
                 [
                     ft.ElevatedButton(
@@ -143,7 +143,6 @@ def main(page: ft.Page) -> None:
     for i in game.user_field:
         page.add(ft.Row(i))
     page.update()
-
 
 if __name__ == "__main__":
     ft.app(target=main)
